@@ -4,12 +4,14 @@
  */
 package ListaTDA;
 
+import java.util.Iterator;
+
 /**
  *
  * @author melis
  * @param <E>
  */
-public class DoubleCircularLinkedList<E> implements List<E>{
+public class DoubleCircularLinkedList<E> implements List<E>, Iterable<E>{
     NodeDLL<E> first;
     
     public DoubleCircularLinkedList(){
@@ -35,11 +37,11 @@ public class DoubleCircularLinkedList<E> implements List<E>{
         }
         else{
             
-            //Setearle al primero el next y el previous
+            //Setearle al nuevo el next y el previous
             nodoAnadir.setNext(first);
             nodoAnadir.setPrevious(first.getPrevious());
             
-            //Setearle las el next y el previous a los que estan al lado del nuevo 
+            //Setearle el next y el previous a los que estan al lado del nuevo 
             //el siguiente del ultimo 
             nodoAnadir.getPrevious().setNext(nodoAnadir);
             //setear el anterior del nuevo por ahora
@@ -63,7 +65,25 @@ public class DoubleCircularLinkedList<E> implements List<E>{
 
     @Override
     public E removeFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        NodeDLL<E> eliminado = first;
+        if(size() == 1){
+            //ponerlo nulo
+            first.setNext(null);
+            first.setPrevious(null);
+            first = null;
+            return eliminado.getContent();
+        }
+        //caso de que haya mas de 1
+        
+        //setearle a los de alado del que se va a eliminar
+        //previo del first de ahora
+        first.getPrevious().setNext(first.getNext());
+        
+        //el next del que esta despues del first de ahora
+        first.getNext().setPrevious(first.getPrevious());
+        
+        first = first.getNext();
+        return eliminado.getContent();
     }
 
     @Override
@@ -73,7 +93,20 @@ public class DoubleCircularLinkedList<E> implements List<E>{
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        //CONTADOR DE ELEMENTOS
+        int contador = 0;
+        //comienza desde el primero
+        NodeDLL<E> viajero = first; 
+        
+        if(first == null){
+            return contador;
+        }
+        contador++;
+        for(viajero = viajero.getNext();  !viajero.equals(first) ; viajero = viajero.getNext()){
+            contador++;
+        }
+        return contador;
     }
 
     @Override
@@ -88,6 +121,24 @@ public class DoubleCircularLinkedList<E> implements List<E>{
 
     @Override
     public String ToString() {
+        String result = "{";
+        
+        
+        if(first == null){
+            return result = " ";
+        }
+        NodeDLL<E> viajero = first;
+        result += viajero.getContent() +", ";
+        for(viajero = viajero.getNext(); !viajero.equals(first);viajero = viajero.getNext()){
+            result += viajero.getContent() + ", ";
+        }
+        result = result.substring(0, result.length()-2);
+        result += "}";
+        return result;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

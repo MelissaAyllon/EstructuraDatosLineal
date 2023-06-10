@@ -73,8 +73,18 @@ public class TDALista {
         System.out.println(listaEnlazada.size());
         System.out.println(listaEnlazada.ToString());
         
-        DoubleCircularLinkedList<Integer> dobleCircu = new DoubleCircularLinkedList<>();
-        dobleCircu.addFirst(1);
+        for(String elemento: listaEnlazada){
+            System.out.println(elemento);
+        }
         
+//        DoubleCircularLinkedList<Integer> dobleCircu = new DoubleCircularLinkedList<>();
+//        dobleCircu.addFirst(1);
+//        dobleCircu.addFirst(2);
+//        System.out.println(dobleCircu.size());
+//        System.out.println(dobleCircu.ToString());
+//        
+//        dobleCircu.removeFirst();
+//        System.out.println(dobleCircu.ToString());
+//        
     }
 }

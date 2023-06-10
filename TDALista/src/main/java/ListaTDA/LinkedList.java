@@ -4,12 +4,14 @@
  */
 package ListaTDA;
 
+import java.util.Iterator;
+
 /**
  *
  * @author melis
  * @param <E> tipo parametrizado
  */
-public class LinkedList<E> implements List<E>{
+public class LinkedList<E> implements List<E>, Iterable<E>{
     
     private Node<E> first;
     private Node<E> last;
@@ -199,6 +201,27 @@ public class LinkedList<E> implements List<E>{
         elementos = elementos.substring(0,elementos.length() - 2);
         elementos += "}";
         return elementos;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        Iterator<E> iterador = new Iterator<E>() {
+            //aqui hay que tomar en cuenta como si recien voy a ver al primero de mi lista
+            Node<E> viajero = first;
+            //tratar como una clase y tiene sus metodos
+            @Override
+            public boolean hasNext(){
+                return viajero != null;
+            }
+            @Override
+            public E next(){
+                E element = viajero.getContent();
+                //asomarse a ver el siguiente y el hasnext me dice si hay o no algo
+                viajero = viajero.getNext();
+                return element;
+            }
+        };     
+        return iterador;
     }
     
 }

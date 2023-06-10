@@ -9,7 +9,7 @@ package ListaTDA;
  * @author melis
  * @param <E>
  */
-public interface List<E> {
+public interface List<E>{
     
     public boolean add(E e, int index);
     public boolean addFirst(E e);
