@@ -9,6 +9,7 @@ import ListaTDA.ArrayList;
 import ListaTDA.DoubleCircularLinkedList;
 import ListaTDA.LinkedList;
 import ListaTDA.List;
+import java.util.Stack;
 /**
  *
  * @author melis
@@ -86,5 +87,7 @@ public class TDALista {
 //        dobleCircu.removeFirst();
 //        System.out.println(dobleCircu.ToString());
 //        
+
+        Stack<Integer> st = new Stack<Integer>();
     }
 }

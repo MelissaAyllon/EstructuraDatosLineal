@@ -140,7 +140,8 @@ public class ArrayList<E> implements List<E> {
         }
     }
 
-    private E get(int i) {
+    //es public o private? lo tengo como private pero lo voy a pasar a private
+    public E get(int i) {
         return elements[i];
     }
     
